@@ -119,25 +119,25 @@ int enumerate(int clock[], int ops[]) {
 	return minCount;
 }
 
-//int main(int argc, char *argv[]) {
-//
-//	int clock[9] = { 0 };
-//	// 每种操作的次数
-//	int ops[9] = { 0 };
-//
-//	for (int i = 0; i < 9; i++) {
-//		cin >> clock[i];
-//	}
-//
-//	int count = enumerate(clock, ops);
-//
-//	for (int i = 0; i < 9; i++) {
-//		if (ops[i] != 0) {
-//			cout << i + 1 << ' ';
-//			ops[i]--;
-//			i--;
-//		}
-//	}
-//
-//	return 0;
-//}
+int main(int argc, char *argv[]) {
+
+	int clock[9] = { 0 };
+	// 每种操作的次数
+	int ops[9] = { 0 };
+
+	for (int i = 0; i < 9; i++) {
+		cin >> clock[i];
+	}
+
+	int count = enumerate(clock, ops);
+
+	for (int i = 0; i < 9; i++) {
+		if (ops[i] != 0) {
+			cout << i + 1 << ' ';
+			ops[i]--;
+			i--;
+		}
+	}
+
+	return 0;
+}
