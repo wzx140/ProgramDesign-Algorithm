@@ -90,25 +90,24 @@ int BFS(unsigned short board) {
 	// 放入初始棋盘
 	State state(board, 0);
 	open.push(state);
+	aClose[board] = true;
 
 	while (!open.empty()) {
 		State aState = open.front();
 		open.pop();
-		unsigned short aBoard = aState.board;
-		int count = aState.count;
-		aClose[aBoard] = true;
 
-		if (finish(aBoard)) {
-			return count;
+		if (finish(aState.board)) {
+			return aState.count;
 		} else {
 
 			for (int i = 0; i < 4; i++) {
 				for (int j = 0; j < 4; j++) {
-					unsigned short temp = flip(aBoard, i, j);
+					unsigned short temp = flip(aState.board, i, j);
 					// 判重
 					if (!aClose[temp]) {
-						State nextState(temp, count + 1);
+						State nextState(temp, aState.count + 1);
 						open.push(nextState);
+						aClose[temp] = true;
 					}
 
 				}

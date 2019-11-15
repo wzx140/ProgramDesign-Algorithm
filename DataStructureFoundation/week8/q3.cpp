@@ -1,12 +1,14 @@
 ﻿#include <iostream>
 #include <queue>
 #include <algorithm>
+#include <limits>
 
 using std::endl;
 using std::cin;
 using std::cout;
 using std::priority_queue;
 using std::max;
+using std::numeric_limits;
 
 // 3. Finding Nemo
 // 使用优先队列+BFS
@@ -20,9 +22,8 @@ int sea[250][250][4];
 // 0->上 1->下 2->左 3->右
 const int dir[4][2] = { {0,1},{0,-1},{-1,0},{1,0} };
 
-// 如果在状态里保存visit数组，可能引发重复走的情况，超出时间限制
-// 第三个维度表示doors
-bool visited[250][250][500];
+// 走到当前点的最小门数
+int minDoors[250][250];
 
 // 边界，由墙的长度决定
 int sx = 0;
@@ -43,7 +44,7 @@ int bfs(int f1, int f2) {
 
 	// 起点
 	open.push(State(0, 0, 0));
-	visited[0][0][0] = true;
+	minDoors[0][0] = 0;
 
 	while (!open.empty()) {
 		State state = open.top();
@@ -73,12 +74,12 @@ int bfs(int f1, int f2) {
 				continue;
 			}
 
-			// 已走过
-			if (visited[nextX][nextY][nextDoors]) {
+			// 已走过或者不是最优路线
+			if (nextDoors >= minDoors[nextX][nextY]) {
 				continue;
 			}
 
-			visited[nextX][nextY][nextDoors] = true;
+			minDoors[nextX][nextY] = nextDoors;
 			open.push(State(nextX, nextY, nextDoors));
 		}
 	}
@@ -91,6 +92,7 @@ int main(int argc, char *argv[]) {
 	int n = 0;
 	int x = 0, y = 0, d = 0, t = 0;
 	float f1 = 0, f2 = 0;
+
 	while ((cin >> m >> n) && (m != -1 && n != -1)) {
 		sx = 0;
 		sy = 0;
@@ -105,9 +107,7 @@ int main(int argc, char *argv[]) {
 		}
 		for (int i = 0; i < 250; i++) {
 			for (int j = 0; j < 250; j++) {
-				for (int k = 0; k < 500; k++) {
-					visited[i][j][k] = false;
-				}
+				minDoors[i][j] = numeric_limits<int>::max();
 			}
 		}
 

@@ -1,31 +1,29 @@
 ﻿#include <iostream>
 #include <queue>
-#include <bitset>
 #include <vector>
 
 using std::endl;
 using std::cin;
 using std::cout;
 using std::queue;
-using std::bitset;
 using std::vector;
 
 // 2：迷宫问题
 
-// 迷宫
-int maze;
+// 左上角为00，x正方向下，y正方向右
 
 struct State {
 	short x = 0;		// 当前位置
 	short y = 0;
 	int father = -1;	// 父结点
-	int board;			// 当前已走过的状态
 };
 
 // 状态数组
 State states[1 << 25];
-// 状态是否走过
-bitset<1 << 25> aClose;
+// 迷宫与visit放在一起
+int visited = 0;
+
+int dir[4][2] = { {0,-1},{0,1},{-1,0},{1,0} };
 
 // 某点是否走过
 bool getPoint(int board, int i, int j) {
@@ -33,73 +31,33 @@ bool getPoint(int board, int i, int j) {
 }
 
 // test
-//void print(int board) {
-//	for (int i = 0; i < 5; i++) {
-//		for (int j = 0; j < 5; j++) {
-//			bool point = getPoint(board, i, j);
-//			if (point) {
-//				cout << 1 << ' ';
-//			} else {
-//				cout << 0 << ' ';
-//			}
-//		}
-//		cout << endl;
-//	}
-//}
-
-int nextState(int board, int i, int j, int op) {
-	switch (op) {
-	case 0:
-		// 上移
-		if (j > 0 && !getPoint(board, i, j - 1)) {
-			return board + (1 << i * 5 + j - 1);
-		} else {
-			return -1;
+void print(int board) {
+	for (int i = 0; i < 5; i++) {
+		for (int j = 0; j < 5; j++) {
+			bool point = getPoint(board, i, j);
+			if (point) {
+				cout << 1 << ' ';
+			} else {
+				cout << 0 << ' ';
+			}
 		}
-		break;
-
-	case 1:
-		// 下移
-		if (j < 4 && !getPoint(board, i, j + 1)) {
-			return board + (1 << i * 5 + j + 1);
-		} else {
-			return -1;
-		}
-		break;
-
-	case 2:
-		// 左移
-		if (i > 0 && !getPoint(board, i - 1, j)) {
-			return board + (1 << (i - 1) * 5 + j);
-		} else {
-			return -1;
-		}
-		break;
-
-	case 3:
-		// 右移
-		if (i < 4 && !getPoint(board, i + 1, j)) {
-			return board + (1 << (i + 1) * 5 + j);
-		} else {
-			return -1;
-		}
-		break;
-
-	default:
-		break;
+		cout << endl;
 	}
+	cout << endl;
 }
 
-int DBFS(int init) {
+int bfs() {
 	queue<int> open;
 
-	states[init].board = init;
-	open.push(init);
+	// 处于原点
+	visited += 1;
+	states[visited].x = 0;
+	states[visited].y = 0;
+	open.push(visited);
 
 	while (!open.empty()) {
 		int board = open.front();
 		open.pop();
-		aClose[board] = true;
 
 		if (getPoint(board, 4, 4)) {
 			// 走到右下角了
@@ -110,42 +68,30 @@ int DBFS(int init) {
 			int y = states[board].y;
 
 			for (int op = 0; op < 4; op++) {
-				int res = nextState(board, x, y, op);
 
-				if (res != -1 && !aClose[res]) {
-					open.push(res);
+				int nextX = x + dir[op][0];
+				int nextY = y + dir[op][1];
 
-					// 更新父指针
-					states[res].father = board;
-					// 更新坐标
-					switch (op) {
-					case 0:
-						// 上移
-						states[res].x = x;
-						states[res].y = y - 1;
-						break;
-
-					case 1:
-						// 下移
-						states[res].x = x;
-						states[res].y = y + 1;
-						break;
-
-					case 2:
-						// 左移
-						states[res].x = x - 1;
-						states[res].y = y;
-						break;
-
-					case 3:
-						// 右移
-						states[res].x = x + 1;
-						states[res].y = y;
-						break;
-					default:
-						break;
-					}
+				// 此点已经被走过
+				if (getPoint(visited, nextX, nextY)) {
+					continue;
 				}
+
+				// 超出范围
+				if (nextX < 0 || nextX >= 5 || nextY < 0 || nextY >= 5) {
+					continue;
+				}
+
+				int nextBoard = board + (1 << nextX * 5 + nextY);
+
+				// 更新父指针
+				states[nextBoard].father = board;
+				// 更新坐标
+				states[nextBoard].x = nextX;
+				states[nextBoard].y = nextY;
+				open.push(nextBoard);
+				// 访问过
+				visited += (1 << nextX * 5 + nextY);
 			}
 		}
 	}
@@ -158,13 +104,13 @@ int main(int argc, char *argv[]) {
 			int value = 0;
 			cin >> value;
 			if (value == 1) {
-				maze += 1 << i * 5 + j;
+				visited += 1 << i * 5 + j;
 			}
 		}
 	}
 
 	// 返回路径终点状态
-	int board = DBFS(maze);
+	int board = bfs();
 
 	// 方向寻找到初始状态
 	vector<int> result;
