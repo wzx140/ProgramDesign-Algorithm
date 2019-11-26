@@ -73,6 +73,12 @@
 - [q2 拓扑排序](DataStructureFoundation/week8/q2.cpp)
 - [q3 Finding Nemo](DataStructureFoundation/week8/q3.cpp)
 
+### 高级数据结构与算法
+#### week2
+- [q1 距离排序](AdvancedDataStructureAndAlgorithm/week2/q2.cpp)
+- [q2 数据筛选](AdvancedDataStructureAndAlgorithm/week2/q2.cpp)
+- [q3 数组取数](AdvancedDataStructureAndAlgorithm/week2/q3.cpp)
+
 ### 一些建议
 - 多组测试数据的时候，要把全局变量重新初始化
 - 不要依赖默认初始值，不同编译器的默认初始值可能不同，尽量自己给个初始值
