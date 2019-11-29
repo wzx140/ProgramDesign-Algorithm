@@ -75,9 +75,14 @@
 
 ### 高级数据结构与算法
 #### week2
-- [q1 距离排序](AdvancedDataStructureAndAlgorithm/week2/q2.cpp)
+- [q1 距离排序](AdvancedDataStructureAndAlgorithm/week2/q1.cpp)
 - [q2 数据筛选](AdvancedDataStructureAndAlgorithm/week2/q2.cpp)
 - [q3 数组取数](AdvancedDataStructureAndAlgorithm/week2/q3.cpp)
+
+#### week3
+- [q1 牛的选举](AdvancedDataStructureAndAlgorithm/week3/q1.cpp)
+- [q2 The Peanuts](AdvancedDataStructureAndAlgorithm/week2/q2.cpp)
+- [q3 DNA排序](AdvancedDataStructureAndAlgorithm/week2/q3.cpp)
 
 ### 一些建议
 - 多组测试数据的时候，要把全局变量重新初始化
