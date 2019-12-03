@@ -3,6 +3,7 @@
 - 不要使用`c++11`的新特性
 - 不要使用`vector.emplace_back`
 - 不要使用嵌套`vector`
+- 数学公式使用`cmath`头文件下的
 
 ### 算法基础
 #### week2 枚举
@@ -83,6 +84,10 @@
 - [q1 牛的选举](AdvancedDataStructureAndAlgorithm/week3/q1.cpp)
 - [q2 The Peanuts](AdvancedDataStructureAndAlgorithm/week2/q2.cpp)
 - [q3 DNA排序](AdvancedDataStructureAndAlgorithm/week2/q3.cpp)
+
+#### week4
+- [q1 置换选择排序](AdvancedDataStructureAndAlgorithm/week4/q1.cpp)
+- [q2 败方树](AdvancedDataStructureAndAlgorithm/week4/q2.cpp)
 
 ### 一些建议
 - 多组测试数据的时候，要把全局变量重新初始化
