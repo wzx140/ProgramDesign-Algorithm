@@ -89,6 +89,11 @@
 - [q1 置换选择排序](AdvancedDataStructureAndAlgorithm/week4/q1.cpp)
 - [q2 败方树](AdvancedDataStructureAndAlgorithm/week4/q2.cpp)
 
+#### week5
+- [q1 词典](AdvancedDataStructureAndAlgorithm/week5/q1.cpp)
+- [q2 集合运算](AdvancedDataStructureAndAlgorithm/week5/q2.cpp)
+- [q3 发现它，抓住它](AdvancedDataStructureAndAlgorithm/week5/q3.cpp)
+
 ### 一些建议
 - 多组测试数据的时候，要把全局变量重新初始化
 - 不要依赖默认初始值，不同编译器的默认初始值可能不同，尽量自己给个初始值
