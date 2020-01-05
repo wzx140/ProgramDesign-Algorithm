@@ -97,6 +97,11 @@
 - [q1 倒排索引](AdvancedDataStructureAndAlgorithm/week6/q1.cpp)
 - [q2 倒排索引查询](AdvancedDataStructureAndAlgorithm/week6/q2.cpp)
 
+#### week7
+- [q1 开关问题](AdvancedDataStructureAndAlgorithm/week7/q1.cpp)
+- [q2 Binary Search Heap Construction](AdvancedDataStructureAndAlgorithm/week7/q2.cpp)
+- [q3 Training little cats](AdvancedDataStructureAndAlgorithm/week7/q3.cpp)
+
 ### 一些建议
 - 多组测试数据的时候，要把全局变量重新初始化
 - 不要依赖默认初始值，不同编译器的默认初始值可能不同，尽量自己给个初始值
