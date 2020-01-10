@@ -102,6 +102,10 @@
 - [q2 Binary Search Heap Construction](AdvancedDataStructureAndAlgorithm/week7/q2.cpp)
 - [q3 Training little cats](AdvancedDataStructureAndAlgorithm/week7/q3.cpp)
 
+#### week8
+- [q1 Shortest Prefixes](AdvancedDataStructureAndAlgorithm/week8/q1.cpp)
+- [q2 Binary Search Heap Construction](AdvancedDataStructureAndAlgorithm/week8/q2.cpp)
+
 ### 一些建议
 - 多组测试数据的时候，要把全局变量重新初始化
 - 不要依赖默认初始值，不同编译器的默认初始值可能不同，尽量自己给个初始值
